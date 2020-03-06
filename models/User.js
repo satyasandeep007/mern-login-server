@@ -5,19 +5,25 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-        required: true
+    required: true
   },
-    name: {
-      type: String,
-      unique: false,
-        required: true
+  name: {
+    type: String,
+    unique: false,
+    required: true
   },
   password: {
     type: String,
     required: true,
     unique: false
+  },
+  city: {
+    type: String,
+    required: true,
+    unique: false
   }
-},{ versionKey: false },
+
+}, { versionKey: false },
   {
     id: false,
     toObject: {
@@ -31,12 +37,12 @@ const UserSchema = new mongoose.Schema({
       getters: true,
       setters: false
     }
-}
+  }
 );
 
 UserSchema.plugin(uniqueValidator, {
   type: 'mongoose-unique-validator',
-    message: 'Error, expected {PATH} to be unique.'
+  message: 'Error, expected {PATH} to be unique.'
 });
 
 const User = mongoose.model('User', UserSchema);

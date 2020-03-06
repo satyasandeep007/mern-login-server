@@ -16,19 +16,19 @@ const login = (req, res) => {
                 if (user.password === req.body.password) {
                     return { user: user }
                 }
-                return {error:"password mismatch"}
+                return { error: "password mismatch" }
             }
             return { error: "no user found" }
-            
+
         }).then((response) => {
-          res.json(response)
+            res.json(response)
         }
         ).catch((error) => {
-        res.send(error)
-    }
-    )
+            res.send(error)
+        }
+        )
 }
-    
+
 
 const register = (req, res) => {
     User.findOne({ email: req.body.email })
@@ -38,7 +38,7 @@ const register = (req, res) => {
             }
             else {
                 User.create({
-                    email: req.body.email, password: req.body.password, name: req.body.name
+                    email: req.body.email, password: req.body.password, name: req.body.name, city: req.body.city
                 })
                     .then((users) => {
                         res.json(users)
@@ -47,8 +47,20 @@ const register = (req, res) => {
                     });
             }
         }).catch((error) => {
-                        res.send(error)
-                    });
+            res.send(error)
+        });
 }
-    
-module.exports = { users, login ,register }
+
+
+const getUserById = (req, res) => {
+    User.findOne({ email: req.params.id })
+        .then((user) => {
+            res.json(user)
+        }
+        ).catch((error) => {
+            res.send(error)
+        })
+
+}
+
+module.exports = { users, login, register, getUserById }
