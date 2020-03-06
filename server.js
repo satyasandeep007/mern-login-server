@@ -8,7 +8,6 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const bearerToken = require('express-bearer-token');
 
-const accessControlAllow = require("./middlewares/accessControlAllow");
 
 // // // Init Middleware
 // app.use(cors());
@@ -18,8 +17,6 @@ const accessControlAllow = require("./middlewares/accessControlAllow");
 // parse body params and attache them to req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use(morgan('dev'))
 
 // gzip compression
 app.use(compress());
