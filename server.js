@@ -9,6 +9,11 @@ const helmet = require("helmet");
 const bearerToken = require('express-bearer-token');
 
 
+
+
+const app = express();
+const port = process.env.PORT || 8000;
+
 // // // Init Middleware
 // app.use(cors());
 // app.use(express.json({ extended: false }));
@@ -39,8 +44,6 @@ app.use(bearerToken());
 require('dotenv').config();
 
 
-const app = express();
-const port = process.env.PORT || 8000;
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
